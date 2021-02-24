@@ -137,7 +137,6 @@ def draw_windows(num_windows, x_pos_left, y_pos_middle):
         turtle.forward(coord_iteration)
 
 
-
 def draw_house(num_windows, x_pos_left, y_pos_middle):
     '''draw a house with as many windows required
     x_pos_left is bottom left most x_coord in grid section
@@ -172,12 +171,56 @@ def draw_house(num_windows, x_pos_left, y_pos_middle):
     draw_windows(num_windows, x_pos_left, y_pos_middle)
 
 
-
+def draw_tree(x_pos, y_pos, height_multiplier):
+    '''draw a tree given an x and y coordinate'''
+    turtle.setpos(x_pos, y_pos + 40*height_multiplier)
+    # leaves
+    turtle.color('green')
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.setheading(315)
+    turtle.forward(40*height_multiplier)
+    turtle.right(135)
+    turtle.forward(20*height_multiplier)
+    turtle.left(135)
+    turtle.forward(40*height_multiplier)
+    turtle.right(135)
+    turtle.forward(20*height_multiplier)
+    turtle.left(135)
+    turtle.forward(40*height_multiplier)
+    turtle.right(135)
+    turtle.forward(88.284271247*height_multiplier)
+    turtle.right(135)
+    turtle.forward(40*height_multiplier)
+    turtle.left(135)
+    turtle.forward(20*height_multiplier)
+    turtle.right(135)
+    turtle.forward(40*height_multiplier)
+    turtle.left(135)
+    turtle.forward(20*height_multiplier)
+    turtle.right(135)
+    turtle.forward(40*height_multiplier)
+    turtle.penup()
+    turtle.end_fill()
     
+    # stump
+    turtle.setheading(270)
+    turtle.color('brown')
+    turtle.forward(85*height_multiplier)
+    turtle.right(90)
+    turtle.forward(8)
+    draw_rectangle(10*height_multiplier, 20*height_multiplier, 'brown', True)
+    turtle.penup()
 
 
-
-
+def draw_forest(num_trees, x_pos_left, y_pos_middle):
+    '''draw a forest with as many trees as required
+    x_pos_left is bottom left most x_coord in grid section
+    y_pos_middle is middle y_coord in grid section'''
+    turtle.setpos(x_pos_left + 20, y_pos_middle)
+    coord_iteration = 225 / (num_trees + 1)
+    for i in range(1, num_trees + 1):
+        draw_tree(x_pos_left + (i*coord_iteration), y_pos_middle, (0.5/num_trees) + 1)
 
 
 
@@ -189,8 +232,6 @@ if __name__ == "__main__":
     turtle.penup()
     # Drawing the roads
     draw_road_system()
-    
-    draw_house(3, -450, 345)
 
     
 
