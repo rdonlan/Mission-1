@@ -1,6 +1,7 @@
 
 import numpy as np
 from numpy.core.defchararray import index
+from drawing_functions import *
 
 class MarkovChain(object):
     def __init__(self, transition_matrix, states):
@@ -33,6 +34,52 @@ class MarkovChain(object):
 
 
 if __name__ == "__main__":
-    print('hello')
-    chain = MarkovChain([[0.8,0.2],[0.6,0.4]],['A','B'])
-    print(chain.generate_states('A',10))
+    states =                ['H2', 'H3', 'H4', 'P1', 'P2', 'P3', 'F1', 'F2', 'F3']
+    transition_matrix = [   [0.05, 0.1 , 0.15, 0.2 , 0.1 , 0.05, 0.15, 0.15, 0.05],
+                            [0.05, 0.1 , 0.2 , 0.05, 0.2 , 0.15, 0.05, 0.15, 0.05],
+                            [0   , 0.1 , 0.15, 0.05, 0.15, 0.25, 0.05, 0.1 , 0.15],
+                            [0.2 , 0.1 , 0.05, 0.1 , 0.05, 0.05, 0.1 , 0.15, 0.2 ],
+                            [0.1 , 0.15, 0.1 , 0.05, 0.1 , 0.05, 0.15, 0.2 , 0.1 ],
+                            [0.05, 0.1 , 0.1 , 0.1 , 0.05, 0.15, 0.25, 0.15, 0.05],
+                            [0.05, 0.1 , 0.15, 0.05, 0.1 , 0.15, 0.1 , 0.2 , 0.1 ],
+                            [0.1 , 0.1 , 0.05, 0.1 , 0.1 , 0.05, 0.1 , 0.2 , 0.2 ],
+                            [0.15, 0.1 , 0.05, 0.2 , 0.15, 0   , 0.05, 0.1 , 0.2 ]
+    ]
+
+    # You have to have at least 1 modest house in a neighborhood!
+    initial_state = 'H2'
+
+    markov_chain = MarkovChain(transition_matrix, states)
+
+    next_num_states = markov_chain.generate_states(initial_state, 16)
+
+    # Setting up the screen and turtle settings
+    screen = turtle.Screen()
+    screen.setup(900, 900)
+    turtle.speed(speed='fastest')
+    turtle.penup()
+    draw_road_system()
+
+    coords_to_draw_at = [   [-450,337.5],[-450,112.5],[-450,-112.5],[-450,-337.5],
+                            [-225,337.5],[-225,112.5],[-225,-112.5],[-225,-337.5],
+                            [0,337.5],[0,112.5],[0,-112.5],[0,-337.5],
+                            [225,337.5],[225,112.5],[225,-112.5],[225,-337.5]
+    ]                            
+
+    for i in range(len(next_num_states)):
+        drawing_type = next_num_states[i][0]
+        drawing_quantity = int(next_num_states[i][1])
+
+        if drawing_type == 'P':
+            draw_people(drawing_quantity, coords_to_draw_at[i][0] + (10*(i%3)), coords_to_draw_at[i][1])
+
+        elif drawing_type == 'H':
+            draw_house(drawing_quantity, coords_to_draw_at[i][0] + (10*(i%3)), coords_to_draw_at[i][1])
+
+        elif drawing_type == 'F':
+            draw_forest(drawing_quantity, coords_to_draw_at[i][0] + (10*(i%3)), coords_to_draw_at[i][1])
+
+
+
+
+    turtle.done()
