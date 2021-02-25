@@ -1,4 +1,4 @@
-
+import turtle
 import numpy as np
 from numpy.core.defchararray import index
 from drawing_functions import *
@@ -15,13 +15,20 @@ class MarkovChain(object):
             self.state_dict[i] = states[i]
 
     def next_state(self, current_state):
-        '''Generates the next state given the current state'''
+        '''Generates the next state given the current state
+        @current_state {str} : the name of the current state the chain is on
+        return {str} : returns a string representing the next state 
+        '''
         current_state_index = self.index_dict[current_state]
         probability_matrix = self.transition_matrix[current_state_index]
         return np.random.choice(self.states, p=probability_matrix)
 
     def generate_states(self, current_state, num):
-        '''Generates the next num states given a current state'''
+        '''Generates the next num states given a current state
+        @current_state {str} : the name of the current state the chain is on
+        num {int} : the number of states that will be generated using the Markov Chain
+        return {list os str} : returns a strings representing the next num states
+        '''
         future_states = []
         for i in range(num):
             next_state = self.next_state(current_state)
@@ -31,9 +38,9 @@ class MarkovChain(object):
 
 
 
-
-
 if __name__ == "__main__":
+    # Each state is represented by a letter corresponding to either House, Forest, or People and
+    # by a number which represents the number of windows, trees, and people respectively
     states =                ['H2', 'H3', 'H4', 'P1', 'P2', 'P3', 'F1', 'F2', 'F3']
     transition_matrix = [   [0.05, 0.1 , 0.15, 0.2 , 0.1 , 0.05, 0.15, 0.15, 0.05],
                             [0.05, 0.1 , 0.2 , 0.05, 0.2 , 0.15, 0.05, 0.15, 0.05],
@@ -46,7 +53,7 @@ if __name__ == "__main__":
                             [0.15, 0.1 , 0.05, 0.2 , 0.15, 0   , 0.05, 0.1 , 0.2 ]
     ]
 
-    # Starting here gives the highest chance of a house being created, and you need houses in a neighborhood!
+    # Starting here gives the highest overall chance of a house being created, and you need houses in a neighborhood!
     initial_state = 'H3'
 
     markov_chain = MarkovChain(transition_matrix, states)
@@ -66,6 +73,7 @@ if __name__ == "__main__":
                             [225,337.5],[225,112.5],[225,-112.5],[225,-337.5]
     ]                            
 
+    # This loop does the work of drawing the correct images in the correct spots based off of the next_num_states
     for i in range(len(next_num_states)):
         drawing_type = next_num_states[i][0]
         drawing_quantity = int(next_num_states[i][1])

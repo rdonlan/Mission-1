@@ -2,7 +2,13 @@ import turtle
 
 
 def draw_rectangle(side1, side2, color, fill):
-    ''' draws a rectangle with side1 as horizontal and side2 as vertical'''
+    ''' draws a rectangle with side1 as horizontal and side2 as vertical
+    @side1 {int}: the horizontal length of the rectangle
+    @side2 {int}: the vertical length of the rectangle
+    @color {str}: the color of the rectangle
+    @fill {bool}: true if the rectangle will be filled, false if it will be empty
+    return: None
+    '''
     turtle.setheading(0)
     turtle.color(color)
     turtle.pendown()
@@ -21,7 +27,12 @@ def draw_rectangle(side1, side2, color, fill):
 
 
 def draw_road(length, width, horizontal):
-    ''' Draws an individual road'''
+    ''' Draws an individual road
+    @length {int}: the horizontal length of the road
+    @width {int}: the vertical length of the road
+    @horizontal {bool}: True if the road is horizontal, False if road is vertical
+    return: None
+    '''
     draw_rectangle(length, width, 'black', True)
     turtle.setheading(270)
     turtle.forward(width/2 - 3)
@@ -47,7 +58,9 @@ def draw_road(length, width, horizontal):
     
 
 def draw_road_system():
-    '''Calls funcitons to draw road grid'''
+    '''Calls funcitons to draw road grid
+    return: None
+    '''
     turtle.penup()
     # Horizontal roads
     for i in range(-1, 2):
@@ -60,7 +73,11 @@ def draw_road_system():
 
 
 def draw_person(x_pos, y_pos):
-    '''draws a person at a specific x and y coordinate'''
+    '''draws a person at a specific x and y coordinate
+    @x_pos {float}: x-coordinate to draw person
+    @y_pos {float}: y-coordinate to draw person
+    return: None
+    '''
     turtle.setpos(x_pos, y_pos + 20)
     turtle.setheading(0)
     turtle.color('brown')
@@ -103,8 +120,11 @@ def draw_person(x_pos, y_pos):
 
 def draw_people(num_people,x_pos_left, y_pos_middle):
     '''draw how may people are required
-    x_pos_left is bottom left most x_coord in grid section
-    y_pos_middle is middle y_coord in grid section'''
+    @num_people {int}: number of people to draw
+    @x_pos_left {float}: the bottom left most x-coordinate in the grid section
+    @y_pos_middle {float}: the middle y-coordinate in the grid section
+    return: None
+    '''
     coord_iteration = 225 / (num_people + 1)
     for i in range(1, num_people + 1):
         draw_person(x_pos_left + (i*coord_iteration), y_pos_middle)
@@ -112,8 +132,11 @@ def draw_people(num_people,x_pos_left, y_pos_middle):
 
 def draw_windows(num_windows, x_pos_left, y_pos_middle):
     '''draw the amount of windows required on the house
-    x_pos_left is bottom left most x_coord in grid section
-    y_pos_middle is middle y_coord in grid section'''
+    @num_windows {int}: number of windows to draw
+    @x_pos_left {float}: the bottom left most x-coordinate in the grid section
+    @y_pos_middle {float}: the middle y-coordinate in the grid section
+    return: None
+    '''
     coord_iteration = 225 / (num_windows + 1)
     turtle.setpos(x_pos_left + 20/num_windows + coord_iteration/2 ,y_pos_middle - 15)
     turtle.setheading(0)
@@ -141,8 +164,11 @@ def draw_windows(num_windows, x_pos_left, y_pos_middle):
 
 def draw_house(num_windows, x_pos_left, y_pos_middle):
     '''draw a house with as many windows required
-    x_pos_left is bottom left most x_coord in grid section
-    y_pos_middle is middle y_coord in grid section'''
+    @num_windows {int}: number of windows to draw
+    @x_pos_left {float}: the bottom left most x-coordinate in the grid section
+    @y_pos_middle {float}: the middle y-coordinate in the grid section
+    return: None
+    '''
     turtle.setpos(x_pos_left + 20, y_pos_middle)
     # house
     draw_rectangle(175, 100, 'pink', True)
@@ -174,7 +200,13 @@ def draw_house(num_windows, x_pos_left, y_pos_middle):
 
 
 def draw_tree(x_pos, y_pos, height_multiplier):
-    '''draw a tree given an x and y coordinate'''
+    '''draw a tree given an x and y coordinate
+    @x_pos {float}: x-coordinate to draw tree
+    @y_pos {float}: y-coordinate to draw tree
+    @height_multiplier {float}: a value to multiply the height of 
+        the tree, less trees = higher multiplier
+    return: None
+    '''
     turtle.setpos(x_pos, y_pos + 40*height_multiplier)
     # leaves
     turtle.color('green')
@@ -217,8 +249,11 @@ def draw_tree(x_pos, y_pos, height_multiplier):
 
 def draw_forest(num_trees, x_pos_left, y_pos_middle):
     '''draw a forest with as many trees as required
-    x_pos_left is bottom left most x_coord in grid section
-    y_pos_middle is middle y_coord in grid section'''
+    @num_trees {int}: number of trees to draw
+    @x_pos_left {float}: the bottom left most x-coordinate in the grid section
+    @y_pos_middle {float}: the middle y-coordinate in the grid section
+    return: None
+    '''
     turtle.setpos(x_pos_left + 20, y_pos_middle)
     coord_iteration = 225 / (num_trees + 1)
     for i in range(1, num_trees + 1):
