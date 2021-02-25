@@ -27,23 +27,23 @@ def draw_road(length, width, horizontal):
     turtle.forward(width/2 - 3)
     turtle.left(90)
 
-    # #Orienting horizontal roads
-    # turtle_distance_horz = length/10
-    # while(horizontal and turtle_distance_horz < length):
-    #     turtle.forward(length/10)
-    #     draw_rectangle(length/45, width/5, 'yellow', True)
-    #     turtle_distance_horz += (length/10)
+    #Orienting horizontal roads
+    turtle_distance_horz = length/10
+    while(horizontal and turtle_distance_horz < length):
+        turtle.forward(length/10)
+        draw_rectangle(length/45, width/5, 'yellow', True)
+        turtle_distance_horz += (length/10)
 
-    # # Orienting vertical roads
-    # turtle_distance_vert = width/10
-    # turtle.forward(length/2 - 3)
-    # turtle.right(90)
-    # turtle.forward(450)
-    # while(horizontal is False and turtle_distance_vert < width):
-    #     turtle.setheading(90)
-    #     turtle.forward(width/10)
-    #     draw_rectangle(length/5, width/45, 'yellow', True)
-    #     turtle_distance_vert += (width/10)
+    # Orienting vertical roads
+    turtle_distance_vert = width/10
+    turtle.forward(length/2 - 3)
+    turtle.right(90)
+    turtle.forward(450)
+    while(horizontal is False and turtle_distance_vert < width):
+        turtle.setheading(90)
+        turtle.forward(width/10)
+        draw_rectangle(length/5, width/45, 'yellow', True)
+        turtle_distance_vert += (width/10)
     
 
 def draw_road_system():
@@ -232,12 +232,6 @@ if __name__ == "__main__":
     screen.setup(900, 900)
     turtle.speed(speed='fastest')
     turtle.penup()
-    # Drawing the roads
-    draw_road_system()
-
-    draw_forest(1,0+10,112.5)
-    draw_house(2,225+15,337.5)
-    draw_people(3,0+10,-337.5)
 
     turtle.done()
     

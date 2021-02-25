@@ -46,8 +46,8 @@ if __name__ == "__main__":
                             [0.15, 0.1 , 0.05, 0.2 , 0.15, 0   , 0.05, 0.1 , 0.2 ]
     ]
 
-    # You have to have at least 1 modest house in a neighborhood!
-    initial_state = 'H2'
+    # Starting here gives the highest chance of a house being created, and you need houses in a neighborhood!
+    initial_state = 'H3'
 
     markov_chain = MarkovChain(transition_matrix, states)
 
@@ -71,13 +71,13 @@ if __name__ == "__main__":
         drawing_quantity = int(next_num_states[i][1])
 
         if drawing_type == 'P':
-            draw_people(drawing_quantity, coords_to_draw_at[i][0] + (10*(i%3)), coords_to_draw_at[i][1])
+            draw_people(drawing_quantity, coords_to_draw_at[i][0] + (10*(i//4)), coords_to_draw_at[i][1])
 
         elif drawing_type == 'H':
-            draw_house(drawing_quantity, coords_to_draw_at[i][0] + (10*(i%3)), coords_to_draw_at[i][1])
+            draw_house(drawing_quantity, coords_to_draw_at[i][0] + (10*(i//4)), coords_to_draw_at[i][1])
 
         elif drawing_type == 'F':
-            draw_forest(drawing_quantity, coords_to_draw_at[i][0] + (10*(i%3)), coords_to_draw_at[i][1])
+            draw_forest(drawing_quantity, coords_to_draw_at[i][0] + (10*(i//4)), coords_to_draw_at[i][1])
 
 
 
