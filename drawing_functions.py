@@ -66,7 +66,9 @@ def draw_person(x_pos, y_pos):
     turtle.color('brown')
     turtle.pendown()
     # head
+    turtle.begin_fill()
     turtle.circle(15)
+    turtle.end_fill()
     # torso
     turtle.setheading(270)
     turtle.forward(65)
@@ -233,7 +235,9 @@ if __name__ == "__main__":
     # Drawing the roads
     draw_road_system()
 
-    
+    draw_forest(1,0+10,112.5)
+    draw_house(2,225+15,337.5)
+    draw_people(3,0+10,-337.5)
 
     turtle.done()
     
